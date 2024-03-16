@@ -1,0 +1,20 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col, to_timestamp
+
+# Create a SparkSession
+spark = SparkSession.builder \
+    .appName("Column Conversion") \
+    .getOrCreate()
+
+# Assume df is your DataFrame and columns_to_convert is a list of columns
+# For demonstration purposes, let's assume df and columns_to_convert are defined
+
+# Iterate over columns_to_convert and apply the conversion
+for column in columns_to_convert:
+    df = df.withColumn(column, to_timestamp(col(column), "MM/dd/yyyy hh:mm:ss a"))
+
+# Show the DataFrame after conversion
+df.show()
+
+# Stop the SparkSession
+spark.stop()
